@@ -1,0 +1,336 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Wise X - Algorithmic Trading robot</title>
+    <link rel="icon" href="{% static 'icon.png' %}" type="image/icon type">
+    <!-- Bootstrap , fonts & icons  -->
+    <link rel="stylesheet" href="{% static 'landing/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'landing/fonts/icon-font/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'landing/fonts/typography-font/typo.css' %}">
+    <link rel="stylesheet" href="{% static 'landing/fonts/fontawesome-5/css/all.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Plugin'stylesheets  -->
+    <link rel="stylesheet" href="{% static 'landing/plugins/aos/aos.min.css' %}">
+    <link rel="stylesheet" href="{% static 'landing/plugins/slick/slick.min.css' %}">
+    <!-- Vendor stylesheets  -->
+    <link rel="stylesheet" href="{% static 'landing/css/main.css' %}">
+    <!-- Custom stylesheet -->
+    <script src="https://unpkg.com/htmx.org@1.7.0"
+            integrity="sha384-EzBXYPt0/T6gxNp0nuPtLkmRpmDBbjg6WmCUZRLXBBwYYmwAUxzlSGej0ARHX0Bo" crossorigin="anonymous"
+            defer></script>
+</head>
+
+<body data-theme-mode-panel-active data-theme="light" style="font-family: 'Mazzard H';">
+<div class="site-wrapper overflow-hidden position-relative">
+    <!-- Site Header -->
+    <!-- Preloader -->
+    <!-- <div id="loading">
+          <div class="preloader">
+              <img src="{% static 'landing/image/preloader.gif' %}" alt="preloader">
+          </div>
+      </div>-->
+    <!--Site Header Area -->
+    <header class="site-header site-header--menu-left landing-11-menu site-header--absolute site-header--sticky">
+        <div class="container">
+            <nav class="navbar site-navbar">
+                <!-- Brand Logo-->
+                <div class="brand-logo">
+                    <a href="{% url 'landing' %}">
+                        <!-- light version logo (logo must be black)-->
+                        <img src="{% static 'new logo.png' %}" alt="" class="light-version-logo">
+                        <!-- Dark version logo (logo must be White)-->
+                        <img src="{% static 'landing/image/logo/logo-white.png' %}" alt="" class="dark-version-logo">
+                    </a>
+                </div>
+                <div class="menu-block-wrapper">
+                    <div class="menu-overlay"></div>
+                    <nav class="menu-block" id="append-menu-header">
+                        <div class="mobile-menu-head">
+                            <div class="go-back">
+                                <i class="fa fa-angle-left"></i>
+                            </div>
+                            <div class="current-menu-title"></div>
+                            <div class="mobile-menu-close">&times;</div>
+                        </div>
+                        <ul class="site-menu-main" id="menu">
+                            <li class="nav-item">
+                                <a href="{% url 'landing' %} " class="nav-link-item">Home</a>
+                            </li>
+                            {% if request.user.is_authenticated %}
+                                <li class="nav-item">
+                                    <a href="{% url 'profile_page' %} " class="nav-link-item">Profile</a>
+                                </li>
+                            {% else %}
+                                <li class="nav-item">
+                                    <a href="{% url 'login' %} " class="nav-link-item">Login</a>
+                                </li>
+                            {% endif %}
+
+                            <li class="nav-item">
+                                <a href="{% url 'privacy-policy' %} " class="nav-link-item">Privacy Policy</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'service-agreement' %}" class="nav-link-item">User Service Agreement</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="header-btns  header-btn-l11 ms-auto d-none d-xs-inline-flex align-items-center">
+                    {% if request.user.is_authenticated %}
+                        <a href="{% url 'profile_page' %} " class="btn log-in-btn focus-reset">Profile</a>
+                    {% else %}
+                        <a href="{% url 'login' %} " class="btn log-in-btn focus-reset">Login</a>
+                    {% endif %}
+                    <a class="download-trail-btn btn focus-reset" href="{% url 'register' %}">
+                        Sign up
+                    </a>
+                </div>
+                <!-- mobile menu trigger -->
+                <div class="mobile-menu-trigger">
+                    <span></span>
+                </div>
+                <!--/.Mobile Menu Hamburger Ends-->
+            </nav>
+        </div>
+    </header>
+    <!-- navbar- -->
+    <!-- Hero Area -->
+    <div class="hero-area-l11 position-relative z-index-1 overflow-hidden">
+        <div class="container position-relative">
+            <div class="row position-relative justify-content-center">
+                <div class="col-xl-8 col-lg-9 col-md-12 order-lg-1 order-1" data-aos="fade-up" data-aos-duration="500"
+                     data-aos-once="true">
+                    <div class="content">
+                        <h1>Robots<br class="d-none d-md-block"> trading for you.</h1>
+                        <div class="row banner-l-11-bottom-content">
+                            <div class="col-lg-8 col-md-8 col-sm-10">
+                                <p class="position-relative banner-main-content-l-11">Analytical trades made by an
+                                    Algorithmic robot
+                                    serving you 24/7 with multiple strategies.
+                                    Best platform for beginners and experts!
+                                    <span class="line-left-content"></span>
+                                </p>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 flex-y-center ">
+                                <a class="btn l-11-hero-btn" href="{% url 'register' %}">Register now!</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9 order-lg-1 order-0" data-aos="fade-up" data-aos-duration="800"
+                     data-aos-once="true">
+                    <img src="{% static 'laptop-screen.png' %}" alt="" class="w-100 hero-l11-main-image">
+                </div>
+            </div>
+        </div>
+        <div class="hero-shape-l11-1 d-none d-md-block">
+            <img src="{% static 'landing/image/l2/hero-shape-1.svg' %}" alt="">
+        </div>
+        <div class="hero-shape-l11-2 d-none d-md-block">
+            <img src="{% static 'landing/image/l2/hero-shape-2.png' %}" alt="">
+        </div>
+    </div>
+
+
+    <!-- Content Area-2  -->
+    <div class="content-area-l-11-2">
+        <div class="container">
+            <div class="row align-items-center justify-content-lg-between justify-content-center">
+                <div class="col-xxl-4 col-xl-5 col-lg-6 col-md-9 order-lg-1 order-1" data-aos="fade-right"
+                     data-aos-duration="800" data-aos-once="true">
+                    <div class="content section-heading-5">
+                        <h2>
+                            Completely Easy for Everyone.
+                        </h2>
+                        <div class="d-flex content-l-11-3-card">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="27" viewBox="0 0 32 27">
+                                <g>
+                                    <g>
+                                        <g>
+                                            <path class="mypath1" fill="none" stroke="#258aff" stroke-linecap="round"
+                                                  stroke-linejoin="round" stroke-miterlimit="20" stroke-width="2"
+                                                  d="M25.528 25.615v0h5.47v0-5.911c0-.56-.341-1.062-.86-1.27l-5.118-2.05a1.367 1.367 0 0 1-.86-1.267v-1.2a5.445 5.445 0 0 0 2.735-4.711V6.471a5.47 5.47 0 0 0-8.205-4.738">
+                                            </path>
+                                        </g>
+                                        <g>
+                                            <path class="mypath1" fill="none" stroke="#258aff" stroke-linecap="round"
+                                                  stroke-linejoin="round" stroke-miterlimit="20" stroke-width="2"
+                                                  d="M19.367 19.846l-5.14-2.036a1.358 1.358 0 0 1-.864-1.257v-1.192a5.394 5.394 0 0 0 2.747-4.676V7.97c0-2.999-2.46-5.43-5.495-5.43-3.034 0-5.494 2.431-5.494 5.43v2.715a5.394 5.394 0 0 0 2.747 4.676v1.192c0 .555-.342 1.054-.864 1.26l-5.14 2.036c-.52.206-.863.703-.864 1.257v4.51h19.23v0-4.51c0-.555-.342-1.054-.863-1.26z">
+                                            </path>
+                                        </g>
+                                    </g>
+                                </g>
+                            </svg>
+                            <div class="content-body">
+                                <h5>Easy setup process</h5>
+                                <p>Select your Risk profile and you are good to go!</p>
+                            </div>
+                        </div>
+                        <div class="d-flex content-l-11-3-card">
+                            <img src="{% static 'landing/image/l2/settings.svg' %}" alt="icon">
+                            <div class="content-body">
+                                <h5>Built for volatile markets</h5>
+                                <p>Robots built for Trading Pairs carefully selected by Crypto Experts.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-6 offset-xxl-2 col-xl-6 col-lg-5 col-md-9 order-lg-1 order-0" data-aos="fade-left"
+                     data-aos-duration="800" data-aos-once="true">
+                    <div class="content-img">
+                        <!--<img src="{% static 'landing/image/l2/content-img2.png' %}" alt="" class="w-lg-auto w-100">-->
+                        <img src="{% static 'coins.png' %}" alt="" class="w-lg-auto w-100">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Feature Area -->
+    <div class="feature-l-11">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-9 px-lg-12 col-md-12">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-10 text-center">
+                            <div class="section-heading-5">
+                                <h2>
+                                    Why Wisex-X ?
+                                </h2>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row feature-l-11-items justify-content-center">
+                        <div class="col-md-6" data-aos="fade-right" data-aos-duration="800" data-aos-once="true">
+                            <div class="d-flex ">
+                                <div class="icon-box">
+                                    <i class="icon icon-settings-gear-64"></i>
+                                </div>
+                                <div class="content-body">
+                                    <h5>Ease of Use</h5>
+                                    <p>All you have to do is select your Risk profile.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6" data-aos="fade-left" data-aos-duration="800" data-aos-once="true">
+                            <div class="d-flex ">
+                                <div class="icon-box">
+                                    <i class="icon icon-layers-3"></i>
+                                </div>
+                                <div class="content-body">
+                                    <h5>Build your team</h5>
+                                    <p>Partner up with us using our referral system & earn up to 25% of the profits
+                                        taken from direct referrals.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6" data-aos="fade-right" data-aos-duration="1000" data-aos-once="true">
+                            <div class="d-flex ">
+                                <div class="icon-box">
+                                    <i class="icon icon-office"></i>
+                                </div>
+                                <div class="content-body">
+                                    <h5>Good returns</h5>
+                                    <p>Earn more returns than professional traders.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6" data-aos="fade-left" data-aos-duration="1000" data-aos-once="true">
+                            <div class="d-flex ">
+                                <div class="icon-box">
+                                    <i class="icon icon-time-3"></i>
+                                </div>
+                                <div class="content-body">
+                                    <h5>Robot runs 24/7/365</h5>
+                                    <p>It never sleeps, operates
+                                        in extremely high speed and makes no emotional error.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6" data-aos="fade-right" data-aos-duration="1200" data-aos-once="true">
+                            <div class="d-flex ">
+                                <div class="icon-box">
+                                    <i class="icon icon-lock-2"></i>
+                                </div>
+                                <div class="content-body">
+                                    <h5>Safety</h5>
+                                    <p>Funds are safe in your Binance account you only top up your Wise-X credits when
+                                        it runs low.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6" data-aos="fade-left" data-aos-duration="1200" data-aos-once="true">
+                            <div class="d-flex ">
+                                <div class="icon-box">
+                                    <i class="icon icon-bicep-2"></i>
+                                </div>
+                                <div class="content-body">
+                                    <h5>Everyone wins</h5>
+                                    <p>We receive 20% of your profits from your Wise-X credits.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Area -->
+    <footer class="footer-l-11 text-center text-md-start">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="footer-logo-l-11">
+                        <a href="#"><img src="{% static 'new logo.png' %}" alt="logo"></a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="footer-widget-l-11">
+                        <ul class="pl-0 list-unstyled d-flex flex-wrap justify-content-center align-items-end ">
+                            <li class="d-flex"><a href="{% url 'service-agreement' %}">User Service Agreement</a></li>
+                            <li class="d-flex"><a href="{% url 'privacy-policy' %}">Privacy Policy</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div class="copyright-area-l-11">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-center">
+                        <p>© Wise X 2022 All right reserved. </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Vendor Scripts -->
+<script src="{% static 'landing/js/vendor.min.js' %}"></script>
+<!-- Plugin's Scripts -->
+<script src="{% static 'landing/plugins/aos/aos.min.js' %}"></script>
+<script src="{% static 'landing/plugins/slick/slick.min.js' %}"></script>
+<script src="{% static 'landing/plugins/menu/menu.js' %}"></script>
+<!-- Activation Script -->
+<script src="{% static 'landing/js/custom.js' %}"></script>
+</body>
+
+</html>

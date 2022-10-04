@@ -1,0 +1,6 @@
+Hello {{name|safe}},
+Transaction of the amount  {{amount|safe}} USDT (TRC20) Successful
+Amount : {{amount|safe}} USDT (TRC20)
+Transaction ID: {{txid|safe}}
+
+Thank you!

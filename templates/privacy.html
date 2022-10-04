@@ -1,0 +1,174 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Wise X - Privacy Policy </title>
+    <link rel="icon" href="{% static 'icon.png' %}" type="image/icon type">>
+    <!-- Bootstrap , fonts & icons  -->
+    <link rel="stylesheet" href="{% static 'landing/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'landing/fonts/icon-font/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'landing/fonts/typography-font/typo.css' %}">
+    <link rel="stylesheet" href="{% static 'landing/fonts/fontawesome-5/css/all.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Plugin'stylesheets  -->
+    <link rel="stylesheet" href="{% static 'landing/plugins/aos/aos.min.css' %}">
+    <link rel="stylesheet" href="{% static 'landing/plugins/slick/slick.min.css' %}">
+    <!-- Vendor stylesheets  -->
+    <link rel="stylesheet" href="{% static 'landing/css/main.css' %}">
+    <!-- Custom stylesheet -->
+</head>
+
+<body data-theme-mode-panel-active data-theme="light" style="font-family: 'Mazzard H';">
+<div class="site-wrapper overflow-hidden position-relative">
+    <!-- Site Header -->
+    <!-- Preloader -->
+    <!-- <div id="loading">
+    <div class="preloader">
+     <img src="./image/preloader.gif" alt="preloader">
+   </div>
+   </div>    -->
+    <!--Site Header Area -->
+    <header class="site-header site-header--menu-left landing-11-menu site-header--absolute site-header--sticky">
+        <div class="container">
+            <nav class="navbar site-navbar">
+                <!-- Brand Logo-->
+                <div class="brand-logo">
+                    <a href="{% url 'landing' %}">
+                        <!-- light version logo (logo must be black)-->
+                        <img src="{% static 'new logo.png' %}" alt="" class="light-version-logo">
+                        <!-- Dark version logo (logo must be White)-->
+                        <img src="{% static 'landing/image/logo/logo-white.png' %}" alt="" class="dark-version-logo">
+                    </a>
+                </div>
+                <div class="menu-block-wrapper">
+                    <div class="menu-overlay"></div>
+                    <nav class="menu-block" id="append-menu-header">
+                        <div class="mobile-menu-head">
+                            <div class="go-back">
+                                <i class="fa fa-angle-left"></i>
+                            </div>
+                            <div class="current-menu-title"></div>
+                            <div class="mobile-menu-close">&times;</div>
+                        </div>
+                        <ul class="site-menu-main">
+                            <li class="nav-item">
+                                <a href="{% url 'landing' %} " class="nav-link-item">Home</a>
+                            </li>
+                            {% if request.user.is_authenticated %}
+                                <li class="nav-item">
+                                    <a href="{% url 'profile_page' %} " class="nav-link-item">Profile</a>
+                                </li>
+                            {% else %}
+                                <li class="nav-item">
+                                    <a href="{% url 'login' %} " class="nav-link-item">Login</a>
+                                </li>
+                            {% endif %}
+                            <li class="nav-item">
+                                <a href="{% url 'privacy-policy' %} " class="nav-link-item">Privacy Policy</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'service-agreement' %}" class="nav-link-item">User Service Agreement</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="header-btns  header-btn-l11 ms-auto d-none d-xs-inline-flex align-items-center">
+                    {% if request.user.is_authenticated %}
+                            <a href="{% url 'profile_page' %} " class="btn log-in-btn focus-reset">Profile</a>
+                    {% else %}
+                            <a href="{% url 'login' %} " class="btn log-in-btn focus-reset">Login</a>
+                    {% endif %}
+                    <a class="download-trail-btn btn focus-reset" href="{% url 'register' %}">
+                        Sign up
+                    </a>
+                </div>
+                <!-- mobile menu trigger -->
+                <div class="mobile-menu-trigger">
+                    <span></span>
+                </div>
+                <!--/.Mobile Menu Hamburger Ends-->
+            </nav>
+        </div>
+    </header>
+    <!-- navbar- -->
+    <!-- Feature Area -->
+    <div class="content-area-l-11-2">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-9 px-lg-12 col-md-12">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-10 text-center">
+                            <div class="section-heading-5">
+                                <h2>
+                                    Privacy Policy
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                    <span>2022-05-30</span>
+                    <div class="row feature-l-11-items justify-content-center">
+                        <p>Before registering for a transaction, users should thoroughly grasp the transaction's related risks and make an impartial assessment on their own economic strength, financing sources, and risk tolerance from the perspective of a general rational person. Investment objectives, investment quotas, and financial products should all be carefully considered by users.</p>
+                        <p>Wise X does not completely guarantee the authenticity, adequacy, timeliness, trustworthiness, completeness, and validity of transaction information linked to digital assets in any explicit or implicit manner, based on the characteristics of Internet transaction users and goods. The user understands and accepts the inherent risks of trading on Wise X. The user bears the risk associated with the exchange, and Wise X is not liable for any losses incurred as a result of investing risks.</p>
+                        <p>Clients from local jurisdictions that restrict actions involving digital assets, or customers designated on the international sanctions list, Wise X cannot and does not wish to serve. We don't want to break any of the various nations' laws and regulations. We may be requested to submit information by law enforcement authorities as good corporate citizens, and we will help whenever authorized by law. This implies that only consumers who follow the law are allowed on our site. We appreciate the chance to earn your business, and we ask that you conduct yourself lawfully and appropriately on our platform.</p>
+                        <span>Disclaimer</span>
+                        <p>All items, services, and material on the website are given "as is," with no explicit or implied warranties of merchantability, suitability for a particular purpose, ownership, non-infringement, or safety, or accuracy. Wise X  makes no statement or assurance about the completeness or accuracy of anything given by third parties on the website, and it is not responsible for the accuracy or reliability of any information or content. Any information supplied on the website must be evaluated for correctness, reliability, timeliness, and completeness by you. Wise X proclaims that it will not be responsible for keeping the information on the website up to date.</p>
+                        <p>You agree to hold Wise X free from any responsibility, loss, claim, or expenditure, including attorney fees, arising from your violation of these terms of service or use of the website's services and information.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Area -->
+    <footer class="footer-l-11 text-center text-md-start">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="footer-logo-l-11">
+                        <a href="#"><img src="{% static 'new logo.png' %}" alt="logo"></a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="footer-widget-l-11">
+                        <ul class="pl-0 list-unstyled d-flex flex-wrap justify-content-center align-items-end ">
+                            <li class="d-flex"><a href="{% url 'service-agreement' %}">User Service Agreement</a></li>
+                            <li class="d-flex"><a href="{% url 'privacy-policy' %}">Privacy Policy</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div class="copyright-area-l-11">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-center">
+                        <p>© Wise X 2022 All right reserved. </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Vendor Scripts -->
+<script src="{% static 'landing/js/vendor.min.js' %}"></script>
+<!-- Plugin's Scripts -->
+<script src="{% static 'landing/plugins/aos/aos.min.js' %}"></script>
+<script src="{% static 'landing/plugins/slick/slick.min.js' %}"></script>
+<script src="{% static 'landing/plugins/menu/menu.js' %}"></script>
+<!-- Activation Script -->
+<script src="{% static 'landing/js/custom.js' %}"></script>
+</body>
+
+</html>

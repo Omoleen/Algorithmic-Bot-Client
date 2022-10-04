@@ -1,0 +1,9 @@
+{% if profile.run_flag == True %}
+    <form hx-post="{% url 'stop-bot' %}" hx-swap="innerHTML" hx-target="#checkbot">
+        <button type="submit" class="btn btn-danger">Stop Bot</button>
+    </form>
+{% else %}
+    <form hx-post="{% url 'start-bot' %}" hx-swap="innerHTML" hx-target="#checkbot">
+        <button type="submit" class="btn btn-success">Start Bot</button>
+    </form>
+{% endif %}

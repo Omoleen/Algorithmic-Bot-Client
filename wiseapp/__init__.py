@@ -1,0 +1,1 @@
+default_app_config = 'wiseapp.apps.WiseappConfig'

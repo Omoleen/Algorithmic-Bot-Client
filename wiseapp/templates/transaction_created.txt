@@ -1,0 +1,8 @@
+Hello {{name|safe}},
+Transaction created for the amount of {{amount|safe}} USDT (TRC20)
+Amount : {{amount|safe}} USDT (TRC20)
+Transaction ID: {{txid|safe}}
+Receiver Address: {{recvr_addr|safe}}
+Transaction expires in 1 hour
+
+Thank you!

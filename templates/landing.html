@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'landingstyle.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <title>Wise-X</title>
+</head>
+
+<body>
+    <header>
+        <img src="{% static 'wise.png' %}" style="max-width: 125px;max-height: 100px;" alt="">
+        <section class="menu">
+            <ul class="menu-list">
+                <li>Home</li>
+                <!--<li class="active">Products</li>-->
+                <li>About Us</li>
+                <li>Contact</li>
+            </ul>
+
+            <button>
+                <i class="fas fa-times"></i>
+                <i class="fas fa-bars"></i>
+            </button>
+        </section>
+    </header>
+
+    <section class="main">
+
+        <section class="left">
+            <!--<p class="title">Wise-X</p>-->
+            <p class="msg">message message message message message message</p>
+            <button class="cta" style="margin: 15px" onclick="window.location.href='{% url 'register' %}'">Sign Up</button><button class="cta" style="margin: 15px" onclick="window.location.href='{% url 'login' %}'">Log in</button>
+        </section>
+
+        <section class="right">
+            <img src="{% static 'img1.jpg' %}" alt="Landing image">
+        </section>
+
+    </section>
+
+    <script>
+        var menu = document.querySelector('.menu');
+        var menuBtn = document.querySelector('.menu button');
+        menuBtn.addEventListener('click', () => {
+            menu.classList.toggle('opened')
+        })
+    </script>
+
+
+</body>
+
+</html>

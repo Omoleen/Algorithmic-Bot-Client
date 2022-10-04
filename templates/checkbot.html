@@ -1,0 +1,13 @@
+{% if profile.wallet > 1.0 and profile.API_KEY != '' and profile.paid_month%}
+    {% if profile.run_profile_button_flag %}
+        <form hx-post="{% url 'stop-bot' %}" hx-swap="innerHTML" hx-target="#checkbot">
+            <button type="submit" class="btn btn-danger">Stop Bot</button>
+        </form>
+    {% else %}
+        <form hx-post="{% url 'start-bot' %}" hx-swap="innerHTML" hx-target="#checkbot">
+            <button type="submit" class="btn btn-success">Start Bot</button>
+        </form>
+    {% endif %}
+{% else %}
+    <button type="button" class="btn btn-secondary" disabled>Check the Guide to start the bot </button>
+{% endif %}

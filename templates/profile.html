@@ -1,0 +1,463 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Wise X - Profile
+{% endblock %}
+{% block content %}
+    <main id="main" class="main">
+
+        <div class="pagetitle">
+            <h1>Profile</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'profile_page' %}">Home</a></li>
+                    <li class="breadcrumb-item active">Profile</li>
+
+                </ol>
+            </nav>
+        </div><!-- End Page Title -->
+
+        <section class="section profile">
+            <div class="row">
+                <div class="col-xl-4">
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Welcome to Wise X!</h5>
+                            <p>A step-by-step guide to get your robot running</p>
+
+                            <!-- Accordion without outline borders -->
+                            <div class="accordion accordion-flush" id="accordionFlushExample">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="flush-headingOne">
+                                        <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
+                                                aria-expanded="false" aria-controls="flush-collapseOne">
+                                            Robot needs to be activated! {% if profile.paid_month %}
+                                            <div><i class="bi bi-check-lg"></i></div>
+                                        {% else %}
+                                            <div id="activatecheck" hx-get="{% url 'profile-activate-check' %}"
+                                                 hx-trigger="every 300s" hx-swap="outerHTML"
+                                                 hx-target="#activatecheck"></div>
+                                        {% endif %}
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseOne" class="accordion-collapse collapse"
+                                         aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">The bot will be activated when you transfer 10 USDT
+                                            via <strong>TRC 20</strong> chain through the "Activate" tab. The bot needs
+                                            to be activated every month but can be done automatically via your wallet
+                                            balance
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="flush-headingTwo">
+                                        <button id="balancecheck" class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo"
+                                                aria-expanded="false" aria-controls="flush-collapseTwo">
+                                            Robot needs fuel {% if profile.wallet > 2.0 %}
+                                            <div id="fuelcheck" hx-get="{% url 'profile-fuel-check' %}"
+                                                 hx-trigger="every 300s" hx-swap="outerHTML" hx-target="#fuelcheck"><i
+                                                    class="bi bi-check-lg"></i></div>
+
+                                        {% else %}
+                                            <div id="fuelcheck" hx-get="{% url 'profile-fuel-check' %}"
+                                                 hx-trigger="every 300s" hx-swap="outerHTML"
+                                                 hx-target="#fuelcheck"></div>
+                                        {% endif %}
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                                         aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">You are advised to keep at least 20 USDT in your
+                                            Wise X wallet as fuel (20% of your revenue) to be deposited via <strong>TRC
+                                                20</strong> chain.
+                                        </div>
+                                        <span>You also need at least 200 USDT in your <strong>Binance Futures Account</strong></span>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="flush-headingThree">
+                                        <button id="apicheck" class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#flush-collapseThree"
+                                                aria-expanded="false" aria-controls="flush-collapseThree">
+                                            Robot needs Binance! {% if not profile.API_KEY == '' %}
+                                            <i class="bi bi-check-lg"></i>
+                                        {% endif %}
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseThree" class="accordion-collapse collapse"
+                                         aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">Connect your Binance account with Wise X via API
+                                            Binding tab. Remember your funds are safely placed in your Binance Futures
+                                            account.
+                                        </div>
+                                        <div class="accordion-body">Head to the Binance API Tutorial page if you haven't
+                                            done that
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="flush-headingFour">
+                                        <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#flush-collapseFourth"
+                                                aria-expanded="false" aria-controls="flush-collapseFourth">
+                                            Select your Risk Profile<i class="bi bi-check-lg"></i>
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseFourth" class="accordion-collapse collapse"
+                                         aria-labelledby="flush-headingFourth" data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">The recommended risk profile set on every account by
+                                            default is medium, but it can be changed depending on your risk tolerance.
+                                            Higher risk gives higher rewards and lower risk gives lower rewards.
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div><!-- End Accordion without outline borders -->
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-8">
+
+                    <div class="card">
+                        <div class="card-body pt-3">
+                            <!-- Bordered Tabs -->
+                            <ul class="nav nav-tabs nav-tabs-bordered">
+
+                                <li class="nav-item">
+                                    <button class="nav-link active" data-bs-toggle="tab"
+                                            data-bs-target="#profile-overview">Settings
+                                    </button>
+                                </li>
+
+                                {#                <li class="nav-item">#}
+                                {#                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit Settings</button>#}
+                                {#                </li>#}
+                                <li class="nav-item">
+                                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#api-bind">API
+                                        Binding
+                                    </button>
+                                </li>
+                                {% if profile.paid_month %}
+                                    <li class="nav-item">
+                                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#make-deposit">
+                                            Deposit Credits
+                                        </button>
+                                    </li>
+                                {% else %}
+                                    <li class="nav-item">
+                                        <button class="nav-link" data-bs-toggle="tab"
+                                                data-bs-target="#profile-activate">Make Payment
+                                        </button>
+                                    </li>
+                                {% endif %}
+                                <li class="nav-item">
+                                    <button class="nav-link" data-bs-toggle="tab"
+                                            data-bs-target="#profile-change-password">Change Password
+                                    </button>
+                                </li>
+
+                            </ul>
+                            <div class="tab-content pt-2">
+
+                                <div class="tab-pane fade show active profile-overview" id="profile-overview">
+
+                                    <h5 class="card-title">Present Settings</h5>
+
+
+                                    <div class="row" id="riskprofileselect">
+                                        <label class="col-lg-3 col-md-4 label" for="riskprofileselect">Risk
+                                            profile</label>
+                                        <div class="col-lg-9 col-md-8">
+                                            <form method="POST" hx-post="{% url 'profile-settings' %}"
+                                                  hx-target="#riskprofileselect" hx-swap="innerHTML">
+                                                {% csrf_token %}
+{#                                                <div class="row">#}
+                                                    <select class="form-select" name="riskprofile" required
+                                                            style="width:auto;">
+                                                        {% if profile.risk_profile == 'low' %}
+                                                            <option value="" disabled selected>Low</option>
+                                                        {% elif profile.risk_profile == 'medium' %}
+                                                            <option value="" disabled selected>Medium</option>
+                                                        {% elif profile.risk_profile == 'high' %}
+                                                            <option value="" disabled selected>High</option>
+                                                        {% elif profile.risk_profile == 'vlow' %}
+                                                            <option value="" disabled selected>Very Low</option>>
+                                                        {% elif profile.risk_profile == 'vhigh' %}
+                                                            <option value="" disabled selected>Very High</option>
+                                                        {% endif %}
+                                                        <option value="vlow">Very Low</option>
+                                                        <option value="low">Low</option>
+                                                        <option value="medium">Medium</option>
+                                                        <option value="high">High</option>
+                                                        <option value="vhigh">Very High</option>
+                                                    </select>
+{#                                                </div>#}
+                                                <button type="submit" class="btn btn-primary mt-2">Update</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-4 label">API KEY</div>
+                                        <div class="col-lg-9 col-md-8">{{ profile.API_KEY }}</div>
+                                    </div>
+
+                                </div>
+
+                                {#                <div class="tab-pane fade profile-edit pt-3" id="profile-edit">#}
+                                {##}
+                                {##}
+                                {#                    <!-- Profile Edit Form -->#}
+                                {#                  <form id="profilesettings" method="POST" hx-post="{% url 'profile-settings' %}" hx-target="#profilesettings" hx-swap="innerHTML">#}
+                                {#                      {% csrf_token %}#}
+                                {#                      <h5>Select your Risk Profile</h5>#}
+                                {#                      <div class="inputGroup">#}
+                                {#                          <input id="radio4" name="riskprofile" value="vlow" type="radio"/>#}
+                                {#                          <label for="radio4" data-bs-toggle="tooltip" data-bs-placement="right" title="" data-bs-original-title="Safe Play">Very Low Risk</label>#}
+                                {#                      </div>#}
+                                {#                      <div class="inputGroup">#}
+                                {#                          <input id="radio1" name="riskprofile" value="low" type="radio"/>#}
+                                {#                          <label for="radio1" data-bs-toggle="tooltip" data-bs-placement="right" title="" data-bs-original-title="Safe Play">Low Risk</label>#}
+                                {#                      </div>#}
+                                {#                      <div class="inputGroup">#}
+                                {#                          <input id="radio2" name="riskprofile" value="medium" type="radio"/>#}
+                                {#                          <label for="radio2" data-bs-toggle="tooltip" data-bs-placement="right" title="" data-bs-original-title="Recommended!">Medium Risk</label>#}
+                                {#                      </div>#}
+                                {#                      <div class="inputGroup">#}
+                                {#                          <input id="radio3" name="riskprofile" value="high" type="radio"/>#}
+                                {#                          <label for="radio3" data-bs-toggle="tooltip" data-bs-placement="right" title="" data-bs-original-title="High Risk High Reward!">High Risk</label>#}
+                                {#                      </div>#}
+                                {#                      <div class="inputGroup">#}
+                                {#                          <input id="radio5" name="riskprofile" value="vhigh" type="radio"/>#}
+                                {#                          <label for="radio5" data-bs-toggle="tooltip" data-bs-placement="right" title="" data-bs-original-title="High Risk High Reward!">Very High Risk</label>#}
+                                {#                      </div>#}
+                                {#                      <div class="text-center">#}
+                                {#                          <button type="submit" class="btn btn-primary">Update</button>#}
+                                {#                      </div>#}
+                                {#                  </form><!-- End Profile Edit Form -->#}
+                                {##}
+                                {#                </div>#}
+
+                                <div class="tab-pane fade profile-edit pt-3" id="api-bind">
+
+                                    <!-- Profile Edit Form -->
+                                    <form id="profileapi" method="POST" hx-post="{% url 'profile-api' %}"
+                                          hx-target="#profileapi" hx-swap="innerHTML">
+                                        {% csrf_token %}
+                                        <div class="row mb-3">
+                                            <label for="API_KEY" class="col-md-4 col-lg-3 col-form-label">API
+                                                KEY</label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <input name="API_KEY" type="text" class="form-control" id="API_KEY"
+                                                       required>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-3">
+                                            <label for="API_SECRET" class="col-md-4 col-lg-3 col-form-label">API
+                                                SECRET</label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <input name="API_SECRET" type="text" class="form-control"
+                                                       id="API_SECRET" required>
+                                            </div>
+                                            <p class="font-italic font-weight-bold text-muted">**Your Secret Key is
+                                                securely stored and encrypted**</p>
+
+                                        </div>
+                                        <div class="text-center">
+                                            <button onclick="riskprofilecheck()" type="submit" class="btn btn-primary">
+                                                Update
+                                            </button>
+                                        </div>
+                                    </form><!-- End Profile Edit Form -->
+
+                                </div>
+
+
+                                <div class="tab-pane fade pt-3" id="profile-activate"
+                                     hx-get="{% url 'profile-check-payment' %}"
+                                     hx-tigger="afterSwap, afterSwap every 30s" hx-swap="innerHTML"
+                                     hx-target="#profile-activate">
+
+                                    <!-- Settings Form -->
+                                    <div class="row mb-3">
+                                        <label for="Price" class="col-md-4 col-lg-3 col-form-label"><b> Bot
+                                            Activation </b></label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <label for="Price" class="col-form-label">10 USDT (TRC20) - Monthly</label>
+                                        </div>
+                                    </div>
+                                    {% if profile.TransactionID|length != 0 %}
+                                        <div class="row mb-3">
+                                            <label for="Price" class="col-md-4 col-lg-3 col-form-label"><b>Remaining
+                                                Balance</b></label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <label for="Price" class="col-form-label">{{ remainder }}</label>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="Price" class="col-md-4 col-lg-3 col-form-label"><b>Transaction
+                                                ID</b></label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <label for="Price" class="col-form-label">{{ trans_id }}</label>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="Price" class="col-md-4 col-lg-3 col-form-label"><b>Receiver's
+                                                Address</b></label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <label for="Price" class="col-form-label">{{ receiver_add }}</label>
+                                            </div>
+                                        </div>
+                                        <label for="Price" class="col-form-label"><b>{{ error }}</b></label>
+                                    {% else %}
+                                        <label for="Price" class="col-form-label"><b>{{ error }}</b></label>
+                                        <form hx-post="{% url 'generate-transaction' %}" hx-target="#profile-activate"
+                                              hx-swap="innerHTML" method="post">
+                                            {% csrf_token %}
+                                            <input name="payment" hidden type="text" class="form-control"
+                                                   value="activate">
+                                            <div class="text-center">
+                                                <button type="submit" class="btn btn-primary">Activate</button>
+                                            </div>
+                                        </form>
+                                    {% endif %}
+
+
+
+                                    <!-- End settings Form -->
+
+                                </div>
+
+                                <div class="tab-pane fade pt-3" id="make-deposit"
+                                     hx-get="{% url 'profile-check-payment' %}"
+                                     hx-tigger="afterSwap, afterSwap every 30s" hx-swap="innerHTML"
+                                     hx-target="#make-deposit">
+                                    <label for="depamt" class="col-form-label text-muted">1 USDT (TRC20) - 1 WX
+                                        Credit</label>
+                                    {% if thprofile.status_code == 0 and thprofile.type == 'deposit' %}
+                                        <div class="row mb-3">
+                                            <label for="Price" class="col-md-4 col-lg-3 col-form-label"><b> Bot
+                                                Activation </b></label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <label for="Price" class="col-form-label">{{ thprofile.amount }} USDT
+                                                    (TRC20)</label>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="Price" class="col-md-4 col-lg-3 col-form-label"><b>Remaining
+                                                Balance</b></label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <label for="Price" class="col-form-label">{{ remainder }}</label>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="Price" class="col-md-4 col-lg-3 col-form-label"><b>Transaction
+                                                ID</b></label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <label for="Price" class="col-form-label">{{ trans_id }}</label>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="Price" class="col-md-4 col-lg-3 col-form-label"><b>Receiver's
+                                                Address</b></label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <label for="Price" class="col-form-label">{{ receiver_add }}</label>
+                                            </div>
+                                        </div>
+                                    {% else %}
+                                        <form hx-post="{% url 'generate-transaction' %}" hx-target="#make-deposit"
+                                              hx-swap="innerHTML" method="post">
+                                            {% csrf_token %}
+                                            <div class="row mb-3">
+
+                                                <label for="depamt"
+                                                       class="col-md-4 col-lg-3 col-form-label">Amount</label>
+                                                <div class="col-md-8 col-lg-9">
+                                                    <input name="depamt" type="number" min="5" class="form-control"
+                                                           placeholder="20">
+                                                </div>
+                                            </div>
+                                            <input name="payment" hidden type="text" class="form-control" value="add">
+                                            <div class="text-center">
+                                                <button type="submit" class="btn btn-primary">Add Credits</button>
+                                            </div>
+                                        </form>
+                                    {% endif %}
+
+
+                                </div>
+
+                                <div class="tab-pane fade pt-3" id="profile-change-password">
+                                    <!-- Change Password Form -->
+                                    <form id="profilepassord" hx-post="{% url 'profile-password' %}" method="POST"
+                                          hx-target="#profilepassord" hx-swap="innerHTML">
+                                        {% csrf_token %}
+                                        <div class="row mb-3">
+                                            <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current
+                                                Password</label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <input name="password" type="password" class="form-control"
+                                                       id="currentPassword" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-3">
+                                            <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New
+                                                Password</label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <input name="newpassword" type="password" class="form-control"
+                                                       id="newPassword" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-3">
+                                            <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter
+                                                New Password</label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <input name="renewpassword" type="password" class="form-control"
+                                                       id="renewPassword" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="text-center">
+                                            <button type="submit" class="btn btn-primary">Change Password</button>
+                                        </div>
+                                    </form><!-- End Change Password Form -->
+
+                                </div>
+
+                            </div><!-- End Bordered Tabs -->
+
+
+                        </div>
+
+                    </div>
+                    <div id="checkbot" hx-get="{% url 'profile-check-bot' %}" hx-swap="innerHTML" hx-target="#checkbot"
+                         hx-trigger="every 60s">
+                        {% if profile.wallet > 1.0 and profile.API_KEY != '' and profile.paid_month %}
+                            {% if profile.run_profile_button_flag %}
+                                <form hx-post="{% url 'stop-bot' %}" hx-swap="innerHTML" hx-target="#checkbot">
+                                    <button type="submit" class="btn btn-danger">Stop Bot</button>
+                                </form>
+                            {% else %}
+                                <form hx-post="{% url 'start-bot' %}" hx-swap="innerHTML" hx-target="#checkbot">
+                                    <button type="submit" class="btn btn-success">Start Bot</button>
+                                </form>
+                            {% endif %}
+                        {% else %}
+                            <button type="button" class="btn btn-secondary" disabled>Check the Guide to start the bot
+                            </button>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main><!-- End #main -->
+{% endblock %}

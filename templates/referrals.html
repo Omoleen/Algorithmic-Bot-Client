@@ -1,0 +1,241 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Wise X - Referrals
+{% endblock %}
+{% block content %}
+    <main id="main" class="main">
+
+        <div class="pagetitle">
+            <h1>Referrals</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'profile_page' %}">Home</a></li>
+                    <li class="breadcrumb-item active">Referrals</li>
+
+                </ol>
+            </nav>
+        </div>
+        <section class="section dashboard">
+            <div class="row">
+
+                <!-- Left side columns -->
+                <div class="col-lg-12">
+                    <div class="row">
+
+                        <!-- Sales Card -->
+                        <div class="col-xxl-4 col-md-6">
+                            <div class="card info-card sales-card">
+
+                                <div class="card-body">
+                                    <h5 class="card-title">Number of Active Referrals</h5>
+
+                                    <div class="d-flex align-items-center">
+                                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                            <i class="bi bi-people"></i>
+                                        </div>
+                                        <div class="ps-3">
+                                            <h6>{{ profile.get_recommended_profiles }}</h6>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div><!-- End Sales Card -->
+
+                        <!-- Revenue Card -->
+                        <div class="col-xxl-4 col-md-6">
+                            <div class="card info-card revenue-card">
+
+                                <div class="card-body">
+                                    <h5 class="card-title">Referral Level</h5>
+
+                                    <div class="d-flex align-items-center">
+                                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                            <i class="bi bi-layers-fill"></i>
+                                        </div>
+                                        <div class="ps-3">
+                                            <h6>Level {{ profile.referral_level }}</h6>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div><!-- End Revenue Card -->
+
+                        <!-- Customers Card -->
+                        <div class="col-xxl-4 col-xl-12">
+
+                            <div class="card info-card customers-card">
+
+
+                                <div class="card-body">
+                                    <h5 class="card-title">Referral Earnings</h5>
+
+                                    <div class="d-flex align-items-center">
+                                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                            <i class="bi bi-coin"></i>
+                                        </div>
+                                        <div class="ps-3">
+                                            <h6>{{ profile.referral_earned }} USDT</h6>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div><!-- End Customers Card -->
+
+                        <div class="col-lg-6">
+                            <div class="row">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Referral Link</h5>
+                                        <a href="{{ BASE_URL }}{{ profile.referral_code }}" class="link-primary">{{ BASE_URL }}{{ profile.referral_code }}</a>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-body pt-3">
+                                        <!-- Default Tabs -->
+                                        <ul class="nav nav-tabs nav-tabs-bordered" id="borderedTab" role="tablist">
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link w-100 active" id="home-tab" data-bs-toggle="tab" data-bs-target="#Affiliate-program" type="button" role="tab" aria-controls="home" aria-selected="true">Affiliate Program</button>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link w-100" id="profile-tab" data-bs-toggle="tab" data-bs-target="#transfer" type="button" role="tab" aria-controls="profile" aria-selected="false">Transfer earnings</button>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link w-100" id="profile-tab" data-bs-toggle="tab" data-bs-target="#withdrawal" type="button" role="tab" aria-controls="profile" aria-selected="false">Withdrawal</button>
+                                            </li>
+                                        </ul>
+                                        <div class="tab-content pt-2" id="borderedTabContent">
+                                            <div class="tab-pane fade show active" id="Affiliate-program" role="tabpanel" aria-labelledby="home-tab">
+                                                <p>Refer a friend using your referral link above and we will pay you 5 - 25% of the cut we take from your direct referrals.
+                                                </p>
+                                                <p>Reach level 5 and earn the highest commission on those 500+ accounts.</p>
+                                            </div>
+                                            <div class="tab-pane fade" id="transfer" role="tabpanel" aria-labelledby="home-tab">
+                                                <form hx-post="{% url 'transfer-page' %}" id="transfer-form" hx-traget="#transfer-form" hx-swap="innnerHTML">
+                                                    {% csrf_token %}
+                                                    <div class="row mb-3">
+                                                        <label for="inputText" class="col-sm-2 col-form-label">Amount</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="number" class="form-control" placeholder="Enter Amount" name="withdrawalamt">
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-muted">This action is irreversible</div>
+                                                    <div class="text-center pt-2">
+                                                        <button type="submit" class="btn btn-primary">Transfer to Wise X wallet</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="tab-pane fade" id="withdrawal" role="tabpanel" aria-labelledby="profile-tab">
+                                                <form hx-post="{% url 'withdrawal-page' %}" id="withdrawal-form" hx-traget="#withdrawal-form" hx-swap="innnerHTML">
+                                                    {% csrf_token %}
+                                                    <div class="row mb-3">
+                                                        <label for="inputText" class="col-sm-2 col-form-label">Address</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="text" class="form-control" placeholder="Enter Address" name="walletadr">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-3">
+                                                        <label for="inputText" class="col-sm-2 col-form-label">Amount</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="number" class="form-control" placeholder="Enter Amount" min="2" name="withdrawalamt">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col label text-muted">Network</div>
+                                                        <div class="col label text-muted">Wallet balance</div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">Tron (TRX 20)</div>
+                                                        <div class="col">{{ profile.referral_earned }} USDT</div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col label text-muted">Network fee</div>
+                                                        <div class="col label text-muted">Minimum withdrawal</div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col">1 USDT</div>
+                                                        <div class="col">2 USDT</div>
+                                                    </div>
+                                                    <div class="text-center pt-2">
+                                                        <button type="submit" class="btn btn-primary">Withdraw</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div><!-- End Default Tabs -->
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                        <div class="col-lg-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Referral Commissions</h5>
+
+                                        <!-- Table with stripped rows -->
+                                        <table class="table table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col">Levels</th>
+                                                <th scope="col">Number of Active Referrals</th>
+                                                <th scope="col">Commission</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>Level 0</td>
+                                                <td>0-100</td>
+                                                <td>5%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Level 1</td>
+                                                <td>101-200</td>
+                                                <td>7%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Level 2</td>
+                                                <td>201-300</td>
+                                                <td>10%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Level 3</td>
+                                                <td>301-400</td>
+                                                <td>14%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Level 4</td>
+                                                <td>401-500</td>
+                                                <td>19%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Level 5</td>
+                                                <td>>500</td>
+                                                <td>25%</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        <!-- End Table with stripped rows -->
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+{% endblock %}

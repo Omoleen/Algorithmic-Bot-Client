@@ -1,0 +1,7 @@
+Hello {{name|safe}},
+
+Your One Time Password: {{code|safe}}
+Your OTP expires in 10 minutes
+DO NOT SHARE your One Time Password with ANYONE
+
+Stay safe!

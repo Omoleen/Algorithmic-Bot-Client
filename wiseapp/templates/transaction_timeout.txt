@@ -1,0 +1,5 @@
+Hello {{name|safe}},
+Transaction of the amount {{amount|safe}} USDT (TRC20) Timed out
+Transaction ID: {{txid|safe}}
+
+Thank you!

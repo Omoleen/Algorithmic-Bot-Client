@@ -1,0 +1,26 @@
+<form hx-post="{% url 'generate-transaction' %}" id="activation" hx-target="#profile-activate" hx-swap="innerHTML" method="post">
+{% if profile.paid_month %}
+    <div class="row mb-3">
+
+        <label for="depamt" class="col-md-4 col-lg-3 col-form-label">Amount</label>
+        <div class="col-md-8 col-lg-9">
+            <input name="depamt" type="number" class="form-control" id="depamt" placeholder="30">
+        </div>
+    </div>
+    <input name="payment" hidden type="text" class="form-control" id="payment" value="add">
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary">Add Credits</button>
+    </div>
+    {% else %}
+    <div class="row mb-3">
+        <label for="Price" class="col-md-4 col-lg-3 col-form-label"><b> Bot Activation </b></label>
+        <div class="col-md-8 col-lg-9">
+            <label for="Price" class="col-form-label">50 USDT (TRC20)</label>
+        </div>
+    </div>
+    <input name="payment" hidden type="text" class="form-control" id="payment" value="activate">
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary">Activate</button>
+    </div>
+{% endif %}
+</form>

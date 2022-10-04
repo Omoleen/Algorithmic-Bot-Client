@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Wise X - Transactions
+{% endblock %}
+{% block content %}
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>Transaction History</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'profile_page' %}">Home</a></li>
+                <li class="breadcrumb-item active">Transactions</li>
+
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
+
+                <div class="card">
+                    <div class="card-body pt-3">
+
+                        <!-- Table with stripped rows -->
+                        <table class="table datatable">
+                            <thead>
+                            <tr>
+                                <th scope="col">Transaction ID</th>
+                                <th scope="col">Amount</th>
+                                <th scope="col">Transaction Type</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Date</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for item in thprofile %}
+                            <tr>
+                                <td scope="row">{{ item.TransactionID }}</td>
+                                <td>{{ item.amount }}</td>
+                                <td>{{ item.type.title }}</td>
+                                {% if item.status_code == 100 %}
+                                    <td>success</td>
+                                    {% elif item.status_code == 0 %}
+                                    <td>pending</td>
+                                    {% else %}
+                                    <td>failed</td>
+                                {% endif %}
+                                <td>{{ item.TransactionCreated }}</td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        <!-- End Table with stripped rows -->
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</main><!-- End #main -->
+    </main><!-- End #main -->
+{% endblock %}
