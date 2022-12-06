@@ -43,7 +43,7 @@ BINANCE_API_SECRET = ''
 
 ALLOWED_HOSTS = ['*']
 
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 # Application definition
