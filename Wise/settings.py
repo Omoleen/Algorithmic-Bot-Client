@@ -103,10 +103,10 @@ WSGI_APPLICATION = 'Wise.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    # '_default': {
-    #         'ENGINE': 'django.db.backends.sqlite3',
-    #         'NAME': BASE_DIR / 'db.sqlite3',
-    #     },
+    'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        },
     # 'default_': {
     #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
     #     'NAME': os.environ['DB_NAME'],
@@ -115,14 +115,6 @@ DATABASES = {
     #     'HOST': os.environ['DB_HOST'],
     #     'PORT': int(os.environ['DB_PORT']),
     # },
-    'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'personal-db',
-            'USER': 'postgres',
-            'PASSWORD': 'Oreoluwa',
-            'HOST': 'personal-db.c9vjynchdewb.us-east-2.rds.amazonaws.com',
-            'PORT': '5432',
-        }
 }
 
 # Heroku DB / Railway DB
