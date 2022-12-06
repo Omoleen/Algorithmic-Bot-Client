@@ -228,9 +228,13 @@ MESSAGE_TAGS = {
 # }
 
 # S3 BUCKETS
-AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
-AWS_SECRET_KEY_ID = os.environ['AWS_SECRET_KEY_ID']
-AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
+# AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+# AWS_SECRET_KEY_ID = os.environ['AWS_SECRET_KEY_ID']
+# AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
+
+AWS_ACCESS_KEY_ID = ''
+AWS_SECRET_KEY_ID = ''
+AWS_STORAGE_BUCKET_NAME = ''
 
 # # AWS_S3_FILE_OVERWRITE =
 AWS_DEFAULT_ACL = None
@@ -255,12 +259,12 @@ if os.getcwd() == '/app':
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
     SECURE_CONTENT_TYPE_NOSNIFF = True
-    ADMIN_URL = os.environ['DJANGO_ADMIN_URL']
+    ADMIN_URL = 'admin/'
     SESSION_COOKIE_HTTPONLY = True
     CSRF_COOKIE_HTTPONLY = True
     SECURE_BROWSER_XSS_FILTER = True
     X_FRAME_OPTIONS = "DENY"
-    CELERY_BROKER_URL = os.environ['REDISCLOUD_URL']
+    CELERY_BROKER_URL = ''
     CELERY_RESULT_BACKEND = CELERY_BROKER_URL
     # CELERY_BROKER_URL = os.environ['rabbitMQ']
     CELERY_SEND_EVENTS = True
@@ -268,7 +272,7 @@ if os.getcwd() == '/app':
     CACHES = {
         "default": {
             "BACKEND": "django_redis.cache.RedisCache",
-            "LOCATION": os.environ['REDISCLOUD_URL'],
+            "LOCATION": '',
             "OPTIONS": {
                 "CLIENT_CLASS": "django_redis.client.DefaultClient",
                 # Mimicing memcache behavior.
@@ -285,7 +289,7 @@ else:
 
 
 # uri to report policy violations
-CSP_REPORT_URI = os.environ['CSP_REPORT_URI']
+CSP_REPORT_URI = ''
 # default source as self
 CSP_DEFAULT_SRC = ("'self'", )
 
