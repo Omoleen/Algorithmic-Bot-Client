@@ -59,7 +59,7 @@ INSTALLED_APPS = [
     'django_celery_beat',
     'django_htmx',
     'django_celery_results',
-    'storages'
+    # 'storages'
 ]
 
 MIDDLEWARE = [
@@ -227,22 +227,6 @@ MESSAGE_TAGS = {
 #     }
 # }
 
-# S3 BUCKETS
-# AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
-# AWS_SECRET_KEY_ID = os.environ['AWS_SECRET_KEY_ID']
-# AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
-
-AWS_ACCESS_KEY_ID = ''
-AWS_SECRET_KEY_ID = ''
-# AWS_STORAGE_BUCKET_NAME = ''
-
-# # AWS_S3_FILE_OVERWRITE =
-AWS_DEFAULT_ACL = None
-DEFAULT_FILE_STORAGE = 'storages.backerands.s3boto3.S3Boto3Storage'
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
-
-# CELERY_TASK_REJECT_ON_WORKER_LOST = True
-# CELERY_ACKS_LATE = True
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 CELERY_ACCEPT_CONTENT = ["application/json"]
 CELERY_TASK_SERIALIZER = "json"
