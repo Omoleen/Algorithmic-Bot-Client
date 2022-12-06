@@ -15,9 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from Wise.settings import ADMIN_URL
+# from Wise.settings import ADMIN_URL
 
 urlpatterns = [
-    path(ADMIN_URL, admin.site.urls),
+    path('admin/', admin.site.urls),
     path('', include('wiseapp.urls')),
 ]

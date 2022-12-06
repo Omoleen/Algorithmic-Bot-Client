@@ -43,7 +43,7 @@ BINANCE_API_SECRET = ''
 
 ALLOWED_HOSTS = ['*']
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 # Application definition
@@ -231,111 +231,111 @@ CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 CELERY_ACCEPT_CONTENT = ["application/json"]
 CELERY_TASK_SERIALIZER = "json"
 CELERY_RESULT_SERIALIZER = "json"
-if os.getcwd() == '/app':
-    SESSION_COOKIE_AGE = 24 * 60 * 60
-    # SECURITY
-    SECURE_SSL_REDIRECT = True
-    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
-    SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SECURE = True
-    # TODO: set this to 60 seconds first and then to 518400 once you prove the former works
-    SECURE_HSTS_SECONDS = 30 * 24 * 60 * 60
-    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-    SECURE_HSTS_PRELOAD = True
-    SECURE_CONTENT_TYPE_NOSNIFF = True
-    ADMIN_URL = 'admin/'
-    SESSION_COOKIE_HTTPONLY = True
-    CSRF_COOKIE_HTTPONLY = True
-    SECURE_BROWSER_XSS_FILTER = True
-    X_FRAME_OPTIONS = "DENY"
-    CELERY_BROKER_URL = ''
-    CELERY_RESULT_BACKEND = CELERY_BROKER_URL
-    # CELERY_BROKER_URL = os.environ['rabbitMQ']
-    CELERY_SEND_EVENTS = True
-    CELERY_TRACK_STARTED = True
-    CACHES = {
-        "default": {
-            "BACKEND": "django_redis.cache.RedisCache",
-            "LOCATION": '',
-            "OPTIONS": {
-                "CLIENT_CLASS": "django_redis.client.DefaultClient",
-                # Mimicing memcache behavior.
-                # https://github.com/jazzband/django-redis#memcached-exceptions-behavior
-                "IGNORE_EXCEPTIONS": True,
-            },
-        }
-    }
-    if USE_TZ:
-        CELERY_TIMEZONE = TIME_ZONE
-    DEBUG = False
-else:
-    ADMIN_URL = 'admin/'
+# if os.getcwd() == '/app':
+#     SESSION_COOKIE_AGE = 24 * 60 * 60
+#     # SECURITY
+#     SECURE_SSL_REDIRECT = True
+#     SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+#     SESSION_COOKIE_SECURE = True
+#     CSRF_COOKIE_SECURE = True
+#     # TODO: set this to 60 seconds first and then to 518400 once you prove the former works
+#     SECURE_HSTS_SECONDS = 30 * 24 * 60 * 60
+#     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+#     SECURE_HSTS_PRELOAD = True
+#     SECURE_CONTENT_TYPE_NOSNIFF = True
+#     ADMIN_URL = 'admin/'
+#     SESSION_COOKIE_HTTPONLY = True
+#     CSRF_COOKIE_HTTPONLY = True
+#     SECURE_BROWSER_XSS_FILTER = True
+#     X_FRAME_OPTIONS = "DENY"
+#     CELERY_BROKER_URL = ''
+#     CELERY_RESULT_BACKEND = CELERY_BROKER_URL
+#     # CELERY_BROKER_URL = os.environ['rabbitMQ']
+#     CELERY_SEND_EVENTS = True
+#     CELERY_TRACK_STARTED = True
+#     CACHES = {
+#         "default": {
+#             "BACKEND": "django_redis.cache.RedisCache",
+#             "LOCATION": '',
+#             "OPTIONS": {
+#                 "CLIENT_CLASS": "django_redis.client.DefaultClient",
+#                 # Mimicing memcache behavior.
+#                 # https://github.com/jazzband/django-redis#memcached-exceptions-behavior
+#                 "IGNORE_EXCEPTIONS": True,
+#             },
+#         }
+#     }
+#     if USE_TZ:
+#         CELERY_TIMEZONE = TIME_ZONE
+#     DEBUG = False
+# else:
+#     ADMIN_URL = 'admin/'
 
 
-# uri to report policy violations
-CSP_REPORT_URI = ''
-# default source as self
-CSP_DEFAULT_SRC = ("'self'", )
-
-# style from our domain and bootstrapcdn
-CSP_STYLE_SRC = ("'self'",
-                 "stackpath.bootstrapcdn.com",
-                 "unpkg.com",
-                 "fonts.gstatic.com",
-                 'fonts.googleapis.com',
-                 "cdnjs.cloudflare.com",
-                 'htmx.org')
-
-# scripts from our domain and other domains
-CSP_SCRIPT_SRC = ("'self'",
-                  "ajax.cloudflare.com",
-                  "static.cloudflareinsights.com",
-                  "www.google-analytics.com",
-                  "ssl.google-analytics.com",
-                  "cdn.ampproject.org",
-                  "www.googletagservices.com",
-                  "pagead2.googlesyndication.com",
-                  'unpkg.com')
-
-# images from our domain and other domains
-CSP_IMG_SRC = ("'self'",
-               "www.google-analytics.com",
-               "raw.githubusercontent.com",
-               "googleads.g.doubleclick.net",
-               'w3.org',
-               'data:')
-
-# loading manifest, workers, frames, etc
-CSP_FONT_SRC = ("'self'",
-                "fonts.gstatic.com",
-                'fonts.googleapis.com',
-                'cdnjs.cloudflare.com')
-CSP_CONNECT_SRC = ("'self'",
-                   "www.google-analytics.com" )
-CSP_OBJECT_SRC = ("'self'", )
-CSP_BASE_URI = ("'self'", )
-CSP_FRAME_ANCESTORS = ("'self'", )
-CSP_FORM_ACTION = ("'self'", )
-CSP_INCLUDE_NONCE_IN = ('script-src', )
-CSP_MANIFEST_SRC = ("'self'", )
-CSP_WORKER_SRC = ("'self'", )
-CSP_MEDIA_SRC = ("'self'", )
-
-
-# PERMISSION POLICY
-PERMISSIONS_POLICY = {
-    "accelerometer": [],
-    "autoplay": [],
-    "camera": [],
-    "display-capture": [],
-    "document-domain": [],
-    "encrypted-media": [],
-    "fullscreen": [],
-    "geolocation": [],
-    "gyroscope": [],
-    "magnetometer": [],
-    "microphone": [],
-    "midi": [],
-    "payment": [],
-    "usb": [],
-}
+# # uri to report policy violations
+# CSP_REPORT_URI = ''
+# # default source as self
+# CSP_DEFAULT_SRC = ("'self'", )
+#
+# # style from our domain and bootstrapcdn
+# CSP_STYLE_SRC = ("'self'",
+#                  "stackpath.bootstrapcdn.com",
+#                  "unpkg.com",
+#                  "fonts.gstatic.com",
+#                  'fonts.googleapis.com',
+#                  "cdnjs.cloudflare.com",
+#                  'htmx.org')
+#
+# # scripts from our domain and other domains
+# CSP_SCRIPT_SRC = ("'self'",
+#                   "ajax.cloudflare.com",
+#                   "static.cloudflareinsights.com",
+#                   "www.google-analytics.com",
+#                   "ssl.google-analytics.com",
+#                   "cdn.ampproject.org",
+#                   "www.googletagservices.com",
+#                   "pagead2.googlesyndication.com",
+#                   'unpkg.com')
+#
+# # images from our domain and other domains
+# CSP_IMG_SRC = ("'self'",
+#                "www.google-analytics.com",
+#                "raw.githubusercontent.com",
+#                "googleads.g.doubleclick.net",
+#                'w3.org',
+#                'data:')
+#
+# # loading manifest, workers, frames, etc
+# CSP_FONT_SRC = ("'self'",
+#                 "fonts.gstatic.com",
+#                 'fonts.googleapis.com',
+#                 'cdnjs.cloudflare.com')
+# CSP_CONNECT_SRC = ("'self'",
+#                    "www.google-analytics.com" )
+# CSP_OBJECT_SRC = ("'self'", )
+# CSP_BASE_URI = ("'self'", )
+# CSP_FRAME_ANCESTORS = ("'self'", )
+# CSP_FORM_ACTION = ("'self'", )
+# CSP_INCLUDE_NONCE_IN = ('script-src', )
+# CSP_MANIFEST_SRC = ("'self'", )
+# CSP_WORKER_SRC = ("'self'", )
+# CSP_MEDIA_SRC = ("'self'", )
+#
+#
+# # PERMISSION POLICY
+# PERMISSIONS_POLICY = {
+#     "accelerometer": [],
+#     "autoplay": [],
+#     "camera": [],
+#     "display-capture": [],
+#     "document-domain": [],
+#     "encrypted-media": [],
+#     "fullscreen": [],
+#     "geolocation": [],
+#     "gyroscope": [],
+#     "magnetometer": [],
+#     "microphone": [],
+#     "midi": [],
+#     "payment": [],
+#     "usb": [],
+# }
