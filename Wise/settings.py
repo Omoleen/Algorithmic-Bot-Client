@@ -30,15 +30,18 @@ load_dotenv()
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = 'django-insecure-605*=&8xbd106t$fyn0n5-!7&v34!zg9%!1*oj-5m=(2ir^*7('
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-BASE_URL = os.environ['BASE_URL']
-BINANCE_API_SECRET = os.environ['BINANCE_API_SECRET']
+# BASE_URL = os.environ['BASE_URL']
+# BINANCE_API_SECRET = os.environ['BINANCE_API_SECRET']
 
-ALLOWED_HOSTS = []
+BASE_URL = ''
+BINANCE_API_SECRET = ''
+
+ALLOWED_HOSTS = ['*']
 
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
@@ -99,24 +102,32 @@ WSGI_APPLICATION = 'Wise.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
 DATABASES = {
+    # '_default': {
+    #         'ENGINE': 'django.db.backends.sqlite3',
+    #         'NAME': BASE_DIR / 'db.sqlite3',
+    #     },
+    # 'default_': {
+    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #     'NAME': os.environ['DB_NAME'],
+    #     'USER': os.environ['DB_USER'],
+    #     'PASSWORD': os.environ['DB_PASSWORD'],
+    #     'HOST': os.environ['DB_HOST'],
+    #     'PORT': int(os.environ['DB_PORT']),
+    # },
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ['DB_NAME'],
-        'USER': os.environ['DB_USER'],
-        'PASSWORD': os.environ['DB_PASSWORD'],
-        'HOST': os.environ['DB_HOST'],
-        'PORT': int(os.environ['DB_PORT']),
-    }
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'personal-db',
+            'USER': 'postgres',
+            'PASSWORD': 'Oreoluwa',
+            'HOST': 'personal-db.c9vjynchdewb.us-east-2.rds.amazonaws.com',
+            'PORT': '5432',
+        }
 }
 
-db_from_env = dj_database_url.config(conn_max_age=600)
+# Heroku DB / Railway DB
+DATABASE_URL = os.getenv("DATABASE_URL")
+db_from_env = dj_database_url.config(default=DATABASE_URL, conn_max_age=600)
 DATABASES['default'].update(db_from_env)
 
 
@@ -174,16 +185,24 @@ LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'profile_page'
 
 COINPAYMENTS_ADMIN_ENABLED = True
-COINPAYMENTS_API_KEY = os.environ['COINPAYMENTS_API_KEY']
-COINPAYMENTS_API_SECRET = os.environ['COINPAYMENTS_API_SECRET']
-IPN_URL = os.environ['IPN_URL']
+# COINPAYMENTS_API_KEY = os.environ['COINPAYMENTS_API_KEY']
+# COINPAYMENTS_API_SECRET = os.environ['COINPAYMENTS_API_SECRET']
+# IPN_URL = os.environ['IPN_URL']
+COINPAYMENTS_API_KEY = ''
+COINPAYMENTS_API_SECRET = ''
+IPN_URL = ''
 
 # gmail settings
-DEFAULT_FROM_EMAIL = os.environ['DEFAULT_FROM_EMAIL']
+# DEFAULT_FROM_EMAIL = os.environ['DEFAULT_FROM_EMAIL']
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = os.environ['EMAIL_HOST']
+# EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
+# EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
+DEFAULT_FROM_EMAIL = ''
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = os.environ['EMAIL_HOST']
-EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
-EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
+EMAIL_HOST = ''
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
 EMAIL_PORT = 465
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
